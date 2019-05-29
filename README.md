@@ -1,10 +1,12 @@
-# 2048小游戏
+<# 2048小游戏
 
 A new Flutter project.
 
 ## ScreenShot
+<h2 align="center">
 <img src="/art/screenshot1.png" width="280" height="498" alt="screenshot1"/>
 <img src="/art/screenshot2.png" width="280" height="498" alt="screenshot2"/>
+</h2>
 
 ## Getting Started
 
