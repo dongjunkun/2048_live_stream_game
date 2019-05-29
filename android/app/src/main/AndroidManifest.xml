@@ -8,7 +8,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="puzzle_game_example"
+        android:label="2048"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
