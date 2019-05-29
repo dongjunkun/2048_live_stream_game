@@ -1,6 +1,10 @@
-# puzzle_game_example
+# 2048小游戏
 
 A new Flutter project.
+
+## ScreenShot
+<img src="/art/screenshot1.png" width="280" height="498" alt="screenshot1"/>
+<img src="/art/screenshot2.png" width="280" height="498" alt="screenshot2"/>
 
 ## Getting Started
 

@@ -1,10 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:puzzle_game_example/model.dart';
 import 'package:puzzle_game_example/simple_animations_package.dart';
 import 'package:puzzle_game_example/utils.dart';
-import 'package:flutter/services.dart';
 
 void main() => runApp(MyApp());
 
@@ -34,9 +34,7 @@ class MyApp extends StatelessWidget {
               if (Navigator.canPop(context)) {
                 Navigator.pop(context);
               } else {
-                int newTime = DateTime
-                    .now()
-                    .millisecondsSinceEpoch;
+                int newTime = DateTime.now().millisecondsSinceEpoch;
                 int result = newTime - lastTime;
                 lastTime = newTime;
                 if (result > 2000) {
@@ -47,8 +45,7 @@ class MyApp extends StatelessWidget {
                 }
               }
               return null;
-            })
-    );
+            }));
   }
 }
 
@@ -134,14 +131,13 @@ class ParticlePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.white.withAlpha(50);
+    final paint = Paint()..color = Colors.white.withAlpha(50);
 
     particles.forEach((particle) {
       var progress = particle.animationProgress.progress(time);
       final animation = particle.tween.transform(progress);
       final position =
-      Offset(animation["x"] * size.width, animation["y"] * size.height);
+          Offset(animation["x"] * size.width, animation["y"] * size.height);
       canvas.drawCircle(position, size.width * 0.2 * particle.size, paint);
     });
   }
@@ -208,12 +204,8 @@ class MyHomePage extends StatelessWidget {
       left: 0.0,
       top: 0,
       child: Container(
-        width: state
-            .boardSize()
-            .width,
-        height: state
-            .boardSize()
-            .width,
+        width: state.boardSize().width,
+        height: state.boardSize().width,
         decoration: BoxDecoration(
             color: Colors.blueGrey, borderRadius: BorderRadius.circular(6.0)),
         child: Stack(
@@ -289,13 +281,7 @@ class _BoardWidgetState extends State<BoardWidget> {
     children.add(MyHomePage(state: this));
     children.addAll(_tileWidgets);
 
-    return Container(
-      padding: EdgeInsets.only(top: MediaQuery
-          .of(context)
-          .padding
-          .top * 2),
-      alignment: AlignmentDirectional.center,
-      child: Column(
+    return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Padding(
@@ -305,11 +291,11 @@ class _BoardWidgetState extends State<BoardWidget> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                    Image.asset(
-                      'asset/icon/icon.png',
-                      width: 100,
-                      height: 100,
-                    ),
+                  Image.asset(
+                    'asset/icon/icon.png',
+                    width: 100,
+                    height: 100,
+                  ),
                   Container(
                     width: 100,
                     height: 80,
@@ -320,24 +306,24 @@ class _BoardWidgetState extends State<BoardWidget> {
                         borderRadius: BorderRadius.all(Radius.circular(20))),
                     child: Center(
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              "分数",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.black54,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              "${_board.score}",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.black54,
-                                  fontWeight: FontWeight.bold),
-                            )
-                          ],
-                        )),
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "分数",
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black54,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          "${_board.score}",
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black54,
+                              fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    )),
                   ),
                   FlatButton(
                     child: Container(
@@ -367,6 +353,7 @@ class _BoardWidgetState extends State<BoardWidget> {
           ),
           Container(
             width: boardSize().width,
+            padding: EdgeInsets.all(16),
             child: Opacity(
                 opacity: gameOver ? 1.0 : 0.0,
                 child: Center(
@@ -437,7 +424,6 @@ class _BoardWidgetState extends State<BoardWidget> {
             ),
           )
         ],
-      ),
     );
   }
 }
@@ -505,18 +491,18 @@ class AnimatedTileWidget extends AnimatedWidget {
     this.state,
     Animation<double> animation,
   }) : super(
-    key: key,
-    listenable: animation,
-  );
+          key: key,
+          listenable: animation,
+        );
 
   @override
   Widget build(BuildContext context) {
     final Animation<double> animation = listenable;
     double animationValue = animation.value;
     Size boardSize = state.boardSize();
-    double width = (boardSize.width - 20 -
-        (state.column + 1) * state.tilePadding) /
-        state.column;
+    double width =
+        (boardSize.width - 20 - (state.column + 1) * state.tilePadding) /
+            state.column;
 
     if (tile.value == 0) {
       return Positioned(
